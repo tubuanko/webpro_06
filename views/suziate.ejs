@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>丁半</title>
+</head>
+<body>
+    <p>あなたの選んだ数字は<%= your %>です</p>
+    <p>コンピュータは<%= kazu %>です</p>
+    <p>判定：<%= judgement %></p>
+    <p>現在<%= total %>問中<%= win %>問正解しています</p>
+    <hr>
+    <form action="/suziate">
+        <input type="text" name="sainome" required>
+        <label for="sainome">次は何を出す？</label>
+        <input type="submit" value="送信">
+        <input type="hidden" name="win" value="<%= win %>">
+        <input type="hidden" name="total" value="<%= total %>">
+    </form>   
+</body>
+</html>

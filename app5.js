@@ -14,33 +14,50 @@ app.get("/hello2", (req, res) => {
   res.render('show', { greet1:"Hello world", greet2:"Bon jour"});
 });
 
-app.get("/seiza]", (req, res) => {
-  const num = Math.floor( Math.random() * 12 + 1 );
-  let cpu = '';
-  if( num==1 ) cpu = '1位';
-  else if( num==2 ) cpu = '2位';
-  else if( num==3 ) cpu = '3位';
-  else if( num==4 ) cpu = '４位';
-  else if( num==5 ) cpu = '５位';
-  else if( num==6 ) cpu = '６位';
-  else if( num==7 ) cpu = '７位';
-  else if( num==8 ) cpu = '８位';
-  else if( num==9 ) cpu = '９位';
-  else if( num==10 ) cpu = '10位';
-  else if( num==11 ) cpu = '11位';
-  else if( num==12 ) cpu = '12位';
-
-  res.render( 'seiza', display );
-});
-
-app.get("/luck", (req, res) => {
+app.get("/suziate", (req, res) => {
+  let sainome = req.query.sainome;
+  let win = Number( req.query.win );
+  let total = Number( req.query.total );
+  console.log( {sainome, win, total});
   const num = Math.floor( Math.random() * 6 + 1 );
-  let luck = '';
-  if( num==1 ) luck = '大吉';
-  else if( num==2 ) luck = '中吉';
-  console.log( 'あなたの運勢は' + luck + 'です' );
-  res.render( 'luck', {number:num, luck:luck} );
+  let kazu = '';
+  if( num==1 ) kazu = '1';
+  else if( num==2 ) kazu = '2';
+  else if( num==3 ) kazu = '3';
+  else if( num==4 ) kazu = '4';
+  else if( num==5 ) kazu = '5';
+  else if( num==6 ) kazu = '6';
+  
+
+  let judgement = '';
+  if (sainome === kazu) {
+    judgement = '正解';
+    win += 1;
+  } else {
+    judgement = 'ハズレ';
+  }
+  total += 1;
+
+  const display = {
+    your: sainome,
+    kazu: kazu,
+    judgement: judgement,
+    win: win,
+    total: total
+  }
+  res.render( 'suziate', display );
 });
+
+app.get("/seiza", (req, res) => {
+  const num = Math.floor( Math.random() * 4 + 1 );
+  let seiza = '';
+  if( num==1 ) seiza = 'スーパーラッキーデー';
+  else if( num==2 ) seiza = 'いいことがありそう';
+  else if( num==3 ) seiza = '悪いことがありそう';
+  else if( num==4 ) seiza = '最悪の1日';
+  res.render( 'seiza', {number:num, seiza:seiza} );
+});
+
 
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;
@@ -58,8 +75,8 @@ app.get("/janken", (req, res) => {
   if (hand === cpu) {
     judgement = '引き分け';
   } else if (
-    (hand === 'グー' && cpu === 'チョキ') ||
-    (hand === 'チョキ' && cpu === 'パー') ||
+    (hand === 'グー' && cpu === 'チョキ') 
+    (hand === 'チョキ' && cpu === 'パー') 
     (hand === 'パー' && cpu === 'グー')
   ) {
     judgement = '勝ち';
