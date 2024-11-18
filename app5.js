@@ -14,8 +14,23 @@ app.get("/hello2", (req, res) => {
   res.render('show', { greet1:"Hello world", greet2:"Bon jour"});
 });
 
-app.get("/icon", (req, res) => {
-  res.render('icon', { filename:"./public/Apple_logo_black.svg", alt:"Apple Logo"});
+app.get("/seiza]", (req, res) => {
+  const num = Math.floor( Math.random() * 12 + 1 );
+  let cpu = '';
+  if( num==1 ) cpu = '1位';
+  else if( num==2 ) cpu = '2位';
+  else if( num==3 ) cpu = '3位';
+  else if( num==4 ) cpu = '４位';
+  else if( num==5 ) cpu = '５位';
+  else if( num==6 ) cpu = '６位';
+  else if( num==7 ) cpu = '７位';
+  else if( num==8 ) cpu = '８位';
+  else if( num==9 ) cpu = '９位';
+  else if( num==10 ) cpu = '10位';
+  else if( num==11 ) cpu = '11位';
+  else if( num==12 ) cpu = '12位';
+
+  res.render( 'seiza', display );
 });
 
 app.get("/luck", (req, res) => {
@@ -36,9 +51,9 @@ app.get("/janken", (req, res) => {
   let cpu = '';
   if( num==1 ) cpu = 'グー';
   else if( num==2 ) cpu = 'チョキ';
-  else cpu = 'パー';
+  else if( num==3 ) cpu = 'パー';
   // ここに勝敗の判定を入れる
-  
+
   let judgement = '';
   if (hand === cpu) {
     judgement = '引き分け';

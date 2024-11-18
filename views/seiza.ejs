@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>星座占い</title>
+</head>
+<body>
+    <p>今日のあなたの運勢を占います</p>
+    <p>あなたの運勢は<%= cpu %>です</p>
+    <hr>
+    <form action="/seiza">
+        <input type="text" name="hand" required>
+        <label for="hand">あなたの星座を入れてください</label>
+        <input type="submit" values="じゃんけん ポン">
+    </form>   
+</body>
+</html>
